@@ -26,7 +26,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     public Attendee getAttendeeById(Long attendeeId) {
         Attendee attendee = attendeeRepository.getAttendeeById(attendeeId);
         if(attendee == null) {
-            throw new NotFoundException("Attendee not found");
+            throw new NotFoundException("Attendee ID "+ attendeeId +" not found");
         }
         return attendee;
     }
@@ -35,7 +35,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     public Attendee updateAttendeeById(Long attendeeId, AttendeeRequest request) {
         Attendee attendee = attendeeRepository.getAttendeeById(attendeeId);
         if(attendee == null) {
-            throw new NotFoundException("Attendee not found for update");
+            throw new NotFoundException("Attendee ID "+ attendeeId +" not found for update");
         }
         return attendeeRepository.updateAttendeeById(attendeeId, request);
     }
@@ -49,7 +49,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     public void deleteAttendeeById(Long attendeeId) {
         Attendee attendee = attendeeRepository.getAttendeeById(attendeeId);
         if(attendee == null) {
-            throw new NotFoundException("Attendee not found for deletion");
+            throw new NotFoundException("Attendee ID "+ attendeeId + " not found for deletion");
         }
         attendeeRepository.deleteAttendeeById(attendeeId);
     }

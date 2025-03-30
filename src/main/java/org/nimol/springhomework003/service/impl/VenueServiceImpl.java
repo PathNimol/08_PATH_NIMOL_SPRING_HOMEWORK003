@@ -26,7 +26,7 @@ public class VenueServiceImpl implements VenueService {
     public Venue getVenueById(Long venueId) {
         Venue venue = venueRepository.getVenueById(venueId);
         if (venue == null) {
-            throw new NotFoundException("Venue not found");
+            throw new NotFoundException("Venue ID " + venueId + " not found");
         }
         return venue;
     }
@@ -35,7 +35,7 @@ public class VenueServiceImpl implements VenueService {
     public Venue updateVenueById(Long venueId, VenueRequest request) {
         Venue venue = venueRepository.getVenueById(venueId);
         if (venue == null) {
-            throw new NotFoundException("Venue not found for update");
+            throw new NotFoundException("Venue ID " + venueId + " not found for update");
         }
         return venueRepository.updateVenueById(venueId, request);
     }
@@ -50,7 +50,7 @@ public class VenueServiceImpl implements VenueService {
     public void deleteVenueById(Long venueId) {
         Venue venue = venueRepository.getVenueById(venueId);
         if (venue == null) {
-            throw new NotFoundException("Venue not found for deletion");
+            throw new NotFoundException("Venue ID " + venueId + " not found for deletion");
         }
         venueRepository.deleteVenueById(venueId);
     }

@@ -23,7 +23,7 @@ public class GlobalException {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleValidationException(MethodArgumentNotValidException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
-        problemDetail.setTitle("Validation Failed");
+        problemDetail.setTitle("Invalid Request Data");
 
         Map<String, String> errors = new HashMap<>();
         for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
@@ -47,7 +47,7 @@ public class GlobalException {
         });
 
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
-        problemDetail.setTitle("Method Parameter Validation Failed");
+        problemDetail.setTitle("Parameter Validation Error");
         problemDetail.setProperties(Map.of(
                 "timestamp", LocalDateTime.now(),
                 "errors", errors
